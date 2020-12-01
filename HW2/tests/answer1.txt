@@ -1,0 +1,33 @@
+Number n: 3
+Your borders: [l, r] = [130000, 150000]
+Size of result array: 30
+original: 143505, modified: 430515, thread: 2
+original: 137124, modified: 411372, thread: 1
+original: 143724, modified: 431172, thread: 2
+original: 143793, modified: 431379, thread: 2
+original: 143799, modified: 431397, thread: 2
+original: 137241, modified: 411723, thread: 1
+original: 137244, modified: 411732, thread: 1
+original: 143856, modified: 431568, thread: 2
+original: 143979, modified: 431937, thread: 2
+original: 144237, modified: 432711, thread: 2
+original: 137724, modified: 413172, thread: 1
+original: 138456, modified: 415368, thread: 1
+original: 138546, modified: 415638, thread: 1
+original: 145035, modified: 435105, thread: 2
+original: 145386, modified: 436158, thread: 2
+original: 140247, modified: 420741, thread: 1
+original: 141237, modified: 423711, thread: 1
+original: 147024, modified: 441072, thread: 2
+original: 147240, modified: 441720, thread: 2
+original: 141725, modified: 425175, thread: 1
+original: 142371, modified: 427113, thread: 1
+original: 142377, modified: 427131, thread: 1
+original: 142437, modified: 427311, thread: 1
+original: 142470, modified: 427410, thread: 1
+original: 142497, modified: 427491, thread: 1
+original: 142517, modified: 427551, thread: 1
+original: 142857, modified: 428571, thread: 1
+original: 134505, modified: 403515, thread: 0
+original: 135045, modified: 405135, thread: 0
+original: 149724, modified: 449172, thread: 2
