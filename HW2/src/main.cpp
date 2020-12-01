@@ -49,7 +49,7 @@ bool Read(int *n, int64_t *l, int64_t *r, int *thread_number, std::string *file_
     }
     std::cout << "Input your right border (in [" << MIN_VALUE << ", " << MAX_VALUE << "]): ";
     std::cin >> *r;
-    if (*r < MIN_VALUE || *r > MAX_VALUE) {
+    if (*r < *l || *r > MAX_VALUE) {
         std::cout << "Incorrect r!\n";
         return false;
     }
