@@ -46,7 +46,7 @@ clang++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp && ./main
 
 - **Тест 1**<br>
 Для начала проверим некорректные вводы (𝑁 ≤ 1; 𝑁 ≥ 10; 𝑙 < 1000; 𝑟 < 𝑙):<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test1.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/blob/HW2/pictures/test1.png" alt="" width="1000" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 2**<br>
 𝑁 = 2, 𝑙 = 1000, 𝑟 = 999999999, *thread_number* = 4, вывод в консоль:<br>
