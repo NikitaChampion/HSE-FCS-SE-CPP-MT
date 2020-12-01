@@ -46,25 +46,25 @@ clang++ -std=c++17 -Xpreprocessor -fopenmp main.cpp -o main -lomp && ./main
 
 - **Тест 1**<br>
 Для начала проверим некорректные вводы (𝑁 ≤ 1; 𝑁 ≥ 10; 𝑙 < 1000; 𝑟 < 𝑙):<br>
-![](./pictures/test1.png =250x)
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test2.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 2**<br>
 𝑁 = 2, 𝑙 = 1000, 𝑟 = 999999999, *thread_number* = 4, вывод в консоль:<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test2.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test2.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 3**<br>
 𝑁 = 2, 𝑙 = 1000, 𝑟 = 100000, *thread_number* = 4, вывод в консоль:<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test3.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test3.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 4**<br>
 𝑁 = 3, 𝑙 = 90000, 𝑟 = 110000, *thread_number* = 10, вывод в консоль:<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test4.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test4.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 5**<br>
 𝑁 = 3, 𝑙 = 130000, 𝑟 = 150000, *thread_number* = 3, вывод в файл (см. [answer1.txt](./tests/answer1.txt)):<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test5.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test5.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
 - **Тест 6**<br>
 𝑁 = 7, 𝑙 = 10000, 𝑟 = 999999999, *thread_number* = 4, вывод в файл (см. [answer2.txt](./tests/answer2.txt)):<br>
-<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test6.png" alt="" width="700" /> <br>
+<img src="https://github.com/NikitaChampion/HSE-FCS-SE-CPP-MT/tree/master/HW2/pictures/test6.png" alt="" width="250" /> <br>
 Программа отработала успешно <br><br>
