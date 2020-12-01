@@ -9,15 +9,15 @@
 #include <mutex>
 #include "omp.h"
 
-#define GENERATE
-#define FILE_OUT
+//#define GENERATE
+//#define FILE_OUT
 
 constexpr int64_t MIN_VALUE = 1000;
 constexpr int64_t MAX_VALUE = 999'999'999ll;
 
 std::mutex mut;
 
-bool Read(int *n, int64_t *l, int64_t *r, int *thread_number, std::string *file_name) {
+bool Read(int *n, int64_t *l, int64_t *r, int *thread_number, std::string *file_name) {  // NOLINT
 #ifdef GENERATE
     std::mt19937 gen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> dist_n(2, 9);
@@ -47,7 +47,7 @@ bool Read(int *n, int64_t *l, int64_t *r, int *thread_number, std::string *file_
         std::cout << "Incorrect l!\n";
         return false;
     }
-    std::cout << "Input your right border (in [" << MIN_VALUE << ", " << MAX_VALUE << "]): ";
+    std::cout << "Input your right border (in [" << *l << ", " << MAX_VALUE << "]): ";
     std::cin >> *r;
     if (*r < *l || *r > MAX_VALUE) {
         std::cout << "Incorrect r!\n";
@@ -108,6 +108,7 @@ void Print(int n, int l, int r, int threads_num, const std::string &file_name, c
     std::ofstream out(file_name);
     out << "Number n: " << n << '\n';
     out << "Your borders: [l, r] = [" << l << ", " << r << "]\n";
+    out << "Amount of threads: " << threads_num << '\n';
     out << "Size of result array: " << answer.size() << '\n';
     for (const Info &info : answer) {
         out << "original: " << info.number << ", modified: " << info.number * n <<
@@ -118,7 +119,7 @@ void Print(int n, int l, int r, int threads_num, const std::string &file_name, c
     std::cout << "Size of result array: " << answer.size() << '\n';
     for (const Info &info : answer) {
         std::cout << "original: " << info.number << ", result: " << info.number * n <<
-            ", thread: " << info.thread_id << '\n';
+                  ", thread: " << info.thread_id << '\n';
     }
 #endif
 }

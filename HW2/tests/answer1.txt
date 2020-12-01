@@ -1,5 +1,6 @@
 Number n: 3
 Your borders: [l, r] = [130000, 150000]
+Amount of threads: 3
 Size of result array: 30
 original: 143505, modified: 430515, thread: 2
 original: 137124, modified: 411372, thread: 1
