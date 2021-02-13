@@ -16,12 +16,12 @@ constexpr int64_t MAX_VALUE = 999'999'999ll;
 
 std::mutex mut;
 
-bool Read(int *n, int *thread_number, std::string *file_name) { // NOLINT
+bool Read(int *n, size_t *thread_number, std::string *file_name) { // NOLINT
 #ifdef GENERATE
     std::mt19937 gen(std::chrono::high_resolution_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> dist_n(2, 9);
     *n = dist_n(gen);
-    std::uniform_int_distribution<int64_t> dist_t(1, MAX_VALUE - MIN_VALUE + 1);
+    std::uniform_int_distribution<size_t> dist_t(1, 1000);
     *thread_number = dist_t(gen);
     *file_name = "answer.txt";
     std::cout << "Number n: " << *n << '\n';
@@ -37,9 +37,9 @@ bool Read(int *n, int *thread_number, std::string *file_name) { // NOLINT
     unsigned int hardware_threads = std::thread::hardware_concurrency();
     std::cout << "Optimal number of threads for your machine: " << (hardware_threads != 0 ? hardware_threads : 2)
               << '\n';
-    std::cout << "Input amount of threads (in [1, 10000]): ";
+    std::cout << "Input amount of threads (in [1, 1000]): ";
     std::cin >> *thread_number;
-    if (*thread_number < 1 || *thread_number > 10000) {
+    if (*thread_number < 1 || *thread_number > 1000) {
         std::cout << "Incorrect amount of threads!\n";
         return false;
     }
@@ -70,30 +70,32 @@ unsigned int Fun(int64_t x) {
 void ComputeThread(int n, int64_t from, int64_t to, std::list<int64_t> &numbers) {
     for (int64_t i = from; i <= to; ++i) {
         if (Fun(i) == Fun(i * n)) {
-            mut.lock();
+            std::lock_guard<std::mutex> guard(mut);
             numbers.push_back(i);
-            mut.unlock();
         }
     }
 }
 
-void Compute(int n, int64_t thread_number, std::list<int64_t> &numbers) {
+void Compute(int n, size_t thread_number, std::list<int64_t> &numbers) {
     int64_t loop_size = (MAX_VALUE - MIN_VALUE + 1) / thread_number;
     std::vector<std::thread> thr(thread_number);
-    for (int64_t i = 0; i < thread_number; ++i) {
+    for (size_t i = 0; i < thread_number; ++i) {
         if (i != thread_number - 1) {
-            thr[i] = std::thread{ComputeThread, n, MIN_VALUE + loop_size * i, MIN_VALUE + loop_size * (i + 1) - 1,
-                                 std::ref(numbers)};
+            thr[i] = std::move(
+                    std::thread{ComputeThread, n,
+                                MIN_VALUE + loop_size * i, MIN_VALUE + loop_size * (i + 1) - 1, std::ref(numbers)});
         } else {
-            thr[i] = std::thread{ComputeThread, n, MIN_VALUE + loop_size * i, MAX_VALUE, std::ref(numbers)};
+            thr[i] = std::move(
+                    std::thread{ComputeThread, n,
+                                MIN_VALUE + loop_size * i, MAX_VALUE, std::ref(numbers)});
         }
     }
-    for (std::thread &Thread : thr) {
-        Thread.join();
+    for (std::thread &thread_ : thr) {
+        thread_.join();
     }
 }
 
-void Print(int n, int threads_num, const std::string &file_name, const std::list<int64_t> &numbers) {
+void Print(int n, size_t threads_num, const std::string &file_name, const std::list<int64_t> &numbers) {
 #ifdef FILE_OUT
     std::ofstream out(file_name);
     out << "Number n: " << n << '\n';
@@ -110,8 +112,10 @@ void Print(int n, int threads_num, const std::string &file_name, const std::list
 }
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    int n, thread_number;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int n;
+    size_t thread_number;
     std::string file_name;
     if (!Read(&n, &thread_number, &file_name)) {
         return 1;
